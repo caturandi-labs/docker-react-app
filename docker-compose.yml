@@ -1,0 +1,18 @@
+version: "3.8"
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  app:
+    container_name: app-react
+    image: node:16.13.2-alpine3.15
+    volumes:
+      - ./react:/app
+    networks:
+      - app-tier
+    ports:
+      - 3000:3000
+    stdin_open: true
+    working_dir: /app
+    entrypoint: "npm start"
